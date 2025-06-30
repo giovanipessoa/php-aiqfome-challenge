@@ -33,4 +33,28 @@ class ValidationHelper
 
         return $errors;
     }
+
+    // Validate product id using the standard rules
+    public static function validateProductId(string $productId): array
+    {
+        $errors = [];
+
+        if (empty($productId)) {
+            $errors[] = ValidationMessages::PRODUCT_ID_REQUIRED->value;
+        }
+
+        return $errors;
+    }
+
+    // Validate customer id using the standard rules
+    public static function validateCustomerId(string $customerId): array
+    {
+        $errors = [];
+
+        if (empty($customerId)) {
+            $errors[] = ValidationMessages::CUSTOMER_ID_REQUIRED->value;
+        }
+
+        return $errors;
+    }
 }
