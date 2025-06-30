@@ -1,0 +1,47 @@
+{
+    "name": "giovani/php-aiqfome-challenge",
+    "description": "Aiqfome Challenge using PHP",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Giovani Pessoa",
+            "email": "giovanipessoa@live.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "slim/slim": "^4.12",
+        "slim/psr7": "^1.6",
+        "php-di/php-di": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Domain\\": "Domain/",
+            "Application\\": "Application/",
+            "Infra\\": "Infra/",
+            "WebUI\\": "WebUI/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "Tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test:coverage": "phpunit --coverage-html coverage",
+        "test:unit": "phpunit Tests/Unit/",
+        "test:integration": "phpunit Tests/Integration/",
+        "test:application": "phpunit Tests/Application/",
+        "test:webui": "phpunit Tests/WebUI/"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
