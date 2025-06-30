@@ -1,0 +1,29 @@
+<?php
+
+namespace Domain\Enums\Commons;
+
+enum ValidationMessages: string
+{
+    case NAME_REQUIRED = 'O nome é obrigatório';
+    case EMAIL_REQUIRED = 'O e-mail é obrigatório';
+    case EMAIL_INVALID_FORMAT = 'O formato do e-mail é inválido';
+    case PASSWORD_REQUIRED = 'A senha é obrigatória';
+    case PASSWORD_WEAK = 'A senha deve conter pelo menos uma letra maiúscula, uma minúscula e um número';
+
+    // Get all name validation messages
+    public static function getNameMessages(): array
+    {
+        return [
+            self::NAME_REQUIRED
+        ];
+    }
+
+    // Get all email validation messages
+    public static function getEmailMessages(): array
+    {
+        return [
+            self::EMAIL_REQUIRED,
+            self::EMAIL_INVALID_FORMAT
+        ];
+    }
+}
