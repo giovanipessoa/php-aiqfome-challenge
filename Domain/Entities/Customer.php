@@ -1,5 +1,7 @@
 <?php
 
+namespace Domain\Entities;
+
 use Domain\Enums\Commons\ValidationHelper;
 use Domain\Enums\Commons\ValidationMessages;
 
