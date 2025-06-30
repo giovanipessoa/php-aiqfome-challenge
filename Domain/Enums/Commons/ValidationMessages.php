@@ -7,6 +7,7 @@ enum ValidationMessages: string
     case NAME_REQUIRED = 'O nome é obrigatório';
     case EMAIL_REQUIRED = 'O e-mail é obrigatório';
     case EMAIL_INVALID_FORMAT = 'O formato do e-mail é inválido';
+    case EMAIL_ALREADY_EXISTS = 'Este e-mail já está cadastrado';
     case PASSWORD_REQUIRED = 'A senha é obrigatória';
     case PASSWORD_WEAK = 'A senha deve conter pelo menos uma letra maiúscula, uma minúscula e um número';
 
@@ -24,6 +25,13 @@ enum ValidationMessages: string
         return [
             self::EMAIL_REQUIRED,
             self::EMAIL_INVALID_FORMAT
+        ];
+    }
+
+    public static function getEmailAlreadyExistsMessages(): array
+    {
+        return [
+            self::EMAIL_ALREADY_EXISTS
         ];
     }
 }
