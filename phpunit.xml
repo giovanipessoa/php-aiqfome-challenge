@@ -12,6 +12,7 @@
         <testsuite name="Application">
             <directory>Tests/Application</directory>
         </testsuite>
+        <testsuite name="WebUI">
             <directory>Tests/WebUI</directory>
         </testsuite>
     </testsuites>
