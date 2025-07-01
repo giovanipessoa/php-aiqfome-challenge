@@ -10,14 +10,13 @@ class Customer
     public function __construct(
         public string $name,
         public string $email,
-        public string $password,
     ) {
         if (ValidationHelper::validateName($this->name)) {
-            throw new \Exception(implode(', ', ValidationMessages::getNameMessages()));
+            throw new \Exception(implode(', ', array_map(fn($m) => $m->value, ValidationMessages::getNameMessages())));
         }
 
         if (ValidationHelper::validateEmail($this->email)) {
-            throw new \Exception(implode(', ', ValidationMessages::getEmailMessages()));
+            throw new \Exception(implode(', ', array_map(fn($m) => $m->value, ValidationMessages::getEmailMessages())));
         }
     }
 }
