@@ -9,7 +9,7 @@ class Customer
 {
     public function __construct(
         public string $name,
-        public string $email,
+        public string $email
     ) {
         if (ValidationHelper::validateName($this->name)) {
             throw new \Exception(implode(', ', array_map(fn($m) => $m->value, ValidationMessages::getNameMessages())));
