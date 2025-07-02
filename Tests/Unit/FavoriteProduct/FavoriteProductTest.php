@@ -2,7 +2,7 @@
 
 // composer test:unit
 
-namespace Tests\Unit\Customer;
+namespace Tests\Unit\FavoriteProduct;
 
 use Domain\Entities\FavoriteProduct;
 use PHPUnit\Framework\TestCase;
