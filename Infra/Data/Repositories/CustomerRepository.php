@@ -20,6 +20,9 @@ class CustomerRepository implements ICustomerRepository
     {
         $stmt = $this->database->getConnection()->prepare("INSERT INTO customers (name, email) VALUES (?, ?)");
         $stmt->execute([$customer->getName(), $customer->getEmail()]);
+
+        // set id to the customer after create
+        $customer->setId($this->database->getConnection()->lastInsertId());
         return $customer;
     }
 
@@ -36,7 +39,8 @@ class CustomerRepository implements ICustomerRepository
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM customers WHERE email = ?");
         $stmt->execute([$email]);
         $customer = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $customer;
+
+        return $customer ? new Customer($customer['id'], $customer['name'], $customer['email']) : null;
     }
 
     public function update(Customer $customer): void
