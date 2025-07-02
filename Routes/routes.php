@@ -7,8 +7,9 @@ $requestUri = str_replace($basePath, '', $_SERVER['REQUEST_URI']);
 $method = $_SERVER['REQUEST_METHOD'];
 
 switch ("$method $requestUri") {
-    case '/customer/create':
-        (new CustomerController())->create();
+    case 'POST /customer/create':
+        $controller = $container->get(CustomerController::class);
+        $controller->create();
         break;
     default:
         http_response_code(404);
