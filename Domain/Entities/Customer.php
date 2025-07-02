@@ -8,7 +8,7 @@ use Domain\Enums\Commons\ValidationMessages;
 class Customer
 {
     public function __construct(
-        public string $id,
+        public int $id,
         public string $name,
         public string $email
     ) {
@@ -19,6 +19,11 @@ class Customer
         if (ValidationHelper::validateEmail($this->email)) {
             throw new \Exception(implode(', ', array_map(fn($m) => $m->value, ValidationMessages::getEmailMessages())));
         }
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 
     public function getId(): string
