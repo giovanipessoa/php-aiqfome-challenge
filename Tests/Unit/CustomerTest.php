@@ -15,7 +15,7 @@ class CustomerTest extends TestCase
         $name = 'Giovani Pessoa';
         $email = 'giovanipessoa@live.com';
 
-        $customer = new Customer($name, $email);
+        $customer = new Customer(1, $name, $email);
 
         $this->assertInstanceOf(Customer::class, $customer);
         $this->assertEquals($name, $customer->name);
@@ -30,7 +30,7 @@ class CustomerTest extends TestCase
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage(ValidationMessages::NAME_REQUIRED->value);
 
-        new Customer($name, $email);
+        new Customer(1, $name, $email);
     }
 
     public function testCreateCustomerWithEmptyEmail()
@@ -41,7 +41,7 @@ class CustomerTest extends TestCase
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage(ValidationMessages::EMAIL_REQUIRED->value);
 
-        new Customer($name, $email);
+        new Customer(1, $name, $email);
     }
 
     public function testCreateCustomerWithInvalidEmail()
@@ -52,6 +52,6 @@ class CustomerTest extends TestCase
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage(ValidationMessages::EMAIL_INVALID_FORMAT->value);
 
-        new Customer($name, $email);
+        new Customer(1, $name, $email);
     }
 }

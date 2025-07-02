@@ -2,10 +2,10 @@
 
 // composer test:application
 
-namespace Tests\Application\UseCases\Customer;
+namespace Tests\Application\UseCases;
 
-use Application\Interfaces\Customer\ICustomerRepository;
-use Application\UseCases\Customer\CustomerUseCase;
+use Application\Interfaces\ICustomerRepository;
+use Application\UseCases\CustomerUseCase;
 use Domain\Entities\Customer;
 use Domain\Enums\Commons\ValidationMessages;
 use PHPUnit\Framework\TestCase;
@@ -18,7 +18,7 @@ class CustomerTest extends TestCase
         $repository = $this->createMock(ICustomerRepository::class);
         $useCase = new CustomerUseCase($repository);
 
-        $customer = new Customer('Giovani Pessoa', 'giovanipessoa@live.com');
+        $customer = new Customer(1, 'Giovani Pessoa', 'giovanipessoa@live.com');
 
         // simulates the repository returning null when the email is not found
         $repository->expects($this->once())
@@ -38,7 +38,7 @@ class CustomerTest extends TestCase
         $repository = $this->createMock(ICustomerRepository::class);
         $useCase = new CustomerUseCase($repository);
 
-        $customer = new Customer('Giovani Pessoa', 'giovanipessoa@live.com');
+        $customer = new Customer(1, 'Giovani Pessoa', 'giovanipessoa@live.com');
 
         // simulates the repository returning the customer when the email is already exists
         $repository->expects($this->once())
