@@ -6,7 +6,7 @@ use Domain\Entities\Customer;
 
 interface ICustomerRepository
 {
-    public function create(Customer $customer): void;
+    public function create(Customer $customer): Customer;
     public function getById(string $id): Customer;
     public function getByEmail(string $email): ?Customer;
     public function update(Customer $customer): void;
