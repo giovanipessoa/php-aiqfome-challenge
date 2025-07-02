@@ -41,4 +41,17 @@ class CustomerController
             echo json_encode(['error' => $e->getMessage()]);
         }
     }
+
+    public function getById(string $id)
+    {
+        try {
+            $customer = $this->customerUseCase->getById($id);
+
+            http_response_code(200);
+            echo json_encode($customer);
+        } catch (\Exception $e) {
+            http_response_code(400);
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+    }
 }
