@@ -22,7 +22,8 @@
             "Domain\\": "Domain/",
             "Application\\": "Application/",
             "Infra\\": "Infra/",
-            "WebUI\\": "WebUI/"
+            "WebUI\\": "WebUI/",
+            "Tests\\": "Tests/"
         }
     },
     "autoload-dev": {
