@@ -1,8 +1,8 @@
 <?php
 
-namespace Application\UseCases\Customer;
+namespace Application\UseCases;
 
-use Application\Interfaces\Customer\ICustomerRepository;
+use Application\Interfaces\ICustomerRepository;
 use Domain\Entities\Customer;
 use Domain\Enums\Commons\ValidationMessages;
 

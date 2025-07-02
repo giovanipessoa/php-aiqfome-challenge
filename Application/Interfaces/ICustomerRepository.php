@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Interfaces\Customer;
+namespace Application\Interfaces;
 
 use Domain\Entities\Customer;
 

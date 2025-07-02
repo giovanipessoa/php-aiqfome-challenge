@@ -4,8 +4,8 @@ use Infra\Data\Interfaces\Database\IDatabase;
 use Infra\Data\Context\AppDataBaseContext;
 
 // customers
-use Application\Interfaces\Customer\ICustomerRepository;
-use Infra\Data\Repositories\Customer\CustomerRepository;
+use Application\Interfaces\ICustomerRepository;
+use Infra\Data\Repositories\CustomerRepository;
 
 return [
     IDatabase::class => \DI\create(AppDataBaseContext::class),

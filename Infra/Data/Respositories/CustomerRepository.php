@@ -1,8 +1,8 @@
 <?php
 
-namespace Infra\Data\Repositories\Customer;
+namespace Infra\Data\Repositories;
 
-use Application\Interfaces\Customer\ICustomerRepository;
+use Application\Interfaces\ICustomerRepository;
 use Infra\Data\Interfaces\Database\IDatabase;
 use Domain\Entities\Customer;
 use PDO;
