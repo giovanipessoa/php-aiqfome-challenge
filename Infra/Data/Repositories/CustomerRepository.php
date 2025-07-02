@@ -31,7 +31,8 @@ class CustomerRepository implements ICustomerRepository
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM customers WHERE id = ?");
         $stmt->execute([$id]);
         $customer = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $customer;
+
+        return $customer ? new Customer($customer['id'], $customer['name'], $customer['email']) : null;
     }
 
     public function getByEmail(string $email): ?Customer
