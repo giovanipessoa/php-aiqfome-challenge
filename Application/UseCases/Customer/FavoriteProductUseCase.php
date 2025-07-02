@@ -1,8 +1,8 @@
 <?php
 
-namespace Application\UseCases;
+namespace Application\UseCases\Customer;
 
-use Application\Interfaces\IFavoriteProductRepository;
+use Application\Interfaces\Customer\IFavoriteProductRepository;
 use Domain\Entities\FavoriteProduct;
 
 class FavoriteProductUseCase

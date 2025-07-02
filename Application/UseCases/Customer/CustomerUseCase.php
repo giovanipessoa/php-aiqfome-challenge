@@ -1,8 +1,8 @@
 <?php
 
-namespace Application\UseCases;
+namespace Application\UseCases\Customer;
 
-use Application\Interfaces\ICustomerRepository;
+use Application\Interfaces\Customer\ICustomerRepository;
 use Domain\Entities\Customer;
 
 class CustomerUseCase

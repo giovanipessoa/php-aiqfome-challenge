@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Interfaces;
+namespace Application\Interfaces\Customer;
 
 use Domain\Entities\FavoriteProduct;
 
