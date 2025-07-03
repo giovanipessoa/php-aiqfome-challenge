@@ -44,6 +44,14 @@ class CustomerRepository implements ICustomerRepository
         return $customer ? new Customer($customer['id'], $customer['name'], $customer['email']) : null;
     }
 
+    public function getAll(): array
+    {
+        $stmt = $this->database->getConnection()->prepare("SELECT * FROM customers");
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function update(Customer $customer): void
     {
         $stmt = $this->database->getConnection()->prepare("UPDATE customers SET name = ?, email = ? WHERE id = ?");

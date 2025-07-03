@@ -35,6 +35,11 @@ class CustomerUseCase
         return $this->interface->getByEmail($email);
     }
 
+    public function getAll(): array
+    {
+        return $this->interface->getAll();
+    }
+
     public function update(Customer $customer): void
     {
         $this->interface->update($customer);
