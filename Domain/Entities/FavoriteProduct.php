@@ -19,4 +19,14 @@ class FavoriteProduct
             throw new \Exception(implode(', ', array_map(fn($m) => $m->value, ValidationMessages::getFavoriteProductMessages())));
         }
     }
+
+    public function getProductId(): int
+    {
+        return $this->productId;
+    }
+
+    public function getCustomerId(): int
+    {
+        return $this->customerId;
+    }
 }
