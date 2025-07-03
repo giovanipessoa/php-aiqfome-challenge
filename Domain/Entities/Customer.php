@@ -26,6 +26,16 @@ class Customer
         $this->id = $id;
     }
 
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
     public function getId(): string
     {
         return $this->id;
