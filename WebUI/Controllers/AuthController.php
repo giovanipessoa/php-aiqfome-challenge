@@ -8,6 +8,11 @@ class AuthController
 {
     public function __construct(private AuthService $authService) {}
 
+    /*
+    * login
+    * @return void
+    */
+
     public function login(): void
     {
         $data = json_decode(file_get_contents('php://input'), true);

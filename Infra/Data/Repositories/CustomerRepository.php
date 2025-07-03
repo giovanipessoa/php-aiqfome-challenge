@@ -16,6 +16,12 @@ class CustomerRepository implements ICustomerRepository
         $this->database = $database;
     }
 
+    /*
+    * create customer
+    * @param Customer $customer
+    * @return Customer
+    */
+
     public function create(Customer $customer): Customer
     {
         $stmt = $this->database->getConnection()->prepare("INSERT INTO customers (name, email) VALUES (?, ?)");
@@ -26,6 +32,12 @@ class CustomerRepository implements ICustomerRepository
         return $customer;
     }
 
+    /*
+    * get customer by id
+    * @param string $id
+    * @return Customer
+    */
+
     public function getById(string $id): Customer
     {
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM customers WHERE id = ?");
@@ -34,6 +46,12 @@ class CustomerRepository implements ICustomerRepository
 
         return $customer ? new Customer($customer['id'], $customer['name'], $customer['email']) : null;
     }
+
+    /*
+    * get customer by email
+    * @param string $email
+    * @return Customer
+    */
 
     public function getByEmail(string $email): ?Customer
     {
@@ -44,6 +62,11 @@ class CustomerRepository implements ICustomerRepository
         return $customer ? new Customer($customer['id'], $customer['name'], $customer['email']) : null;
     }
 
+    /*
+    * get all customers
+    * @return array
+    */
+
     public function getAll(): array
     {
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM customers");
@@ -52,11 +75,23 @@ class CustomerRepository implements ICustomerRepository
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /*
+    * update customer
+    * @param Customer $customer
+    * @return void
+    */
+
     public function update(Customer $customer): void
     {
         $stmt = $this->database->getConnection()->prepare("UPDATE customers SET name = ?, email = ? WHERE id = ?");
         $stmt->execute([$customer->getName(), $customer->getEmail(), $customer->getId()]);
     }
+
+    /*
+    * delete customer
+    * @param string $id
+    * @return void
+    */
 
     public function delete(string $id): void
     {

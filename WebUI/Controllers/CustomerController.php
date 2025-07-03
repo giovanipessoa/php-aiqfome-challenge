@@ -14,6 +14,11 @@ class CustomerController
         $this->customerUseCase = $customerUseCase;
     }
 
+    /*
+    * create customer
+    * @return void
+    */
+
     public function create()
     {
         try {
@@ -42,6 +47,12 @@ class CustomerController
         }
     }
 
+    /*
+    * get customer by id
+    * @param string $id
+    * @return void
+    */
+
     public function getById(string $id)
     {
         try {
@@ -55,6 +66,11 @@ class CustomerController
         }
     }
 
+    /*
+    * get all customers
+    * @return void
+    */
+
     public function getAll()
     {
         try {
@@ -67,6 +83,12 @@ class CustomerController
             echo json_encode(['error' => $e->getMessage()]);
         }
     }
+
+    /*
+    * update customer
+    * @param string $id
+    * @return void
+    */
 
     public function update(string $id)
     {
@@ -95,6 +117,12 @@ class CustomerController
             echo json_encode(['error' => $e->getMessage()]);
         }
     }
+
+    /*
+    * delete customer
+    * @param string $id
+    * @return void
+    */
 
     public function delete(string $id)
     {

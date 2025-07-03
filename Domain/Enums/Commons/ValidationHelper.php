@@ -4,7 +4,12 @@ namespace Domain\Enums\Commons;
 
 class ValidationHelper
 {
-    // Validate name using the standard rules
+    /*
+    * validate name using the standard rules
+    * @param string $name
+    * @return array
+    */
+
     public static function validateName(string $name): array
     {
         $errors = [];
@@ -17,7 +22,12 @@ class ValidationHelper
         return $errors;
     }
 
-    // Validate email using the standard rules
+    /*
+    * validate email using the standard rules
+    * @param string $email
+    * @return array
+    */
+
     public static function validateEmail(string $email): array
     {
         $errors = [];
@@ -34,7 +44,12 @@ class ValidationHelper
         return $errors;
     }
 
-    // Validate product id using the standard rules
+    /*
+    * validate product id using the standard rules
+    * @param string $productId
+    * @return array
+    */
+
     public static function validateProductId(string $productId): array
     {
         $errors = [];
@@ -46,7 +61,12 @@ class ValidationHelper
         return $errors;
     }
 
-    // Validate customer id using the standard rules
+    /*
+    * validate customer id using the standard rules
+    * @param string $customerId
+    * @return array
+    */
+
     public static function validateCustomerId(string $customerId): array
     {
         $errors = [];

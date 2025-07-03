@@ -22,11 +22,23 @@ class Service
         $this->publicKeyPath = __DIR__ . '/Keys/public.key';
     }
 
+    /*
+    * generate jwt
+    * @param array $payload
+    * @return string
+    */
+
     public function generateJWT(array $payload): string
     {
         $privateKey = file_get_contents($this->privateKeyPath);
         return JWT::encode($payload, $privateKey, 'ES256');
     }
+
+    /*
+    * validate jwt
+    * @param string $jwt
+    * @return object
+    */
 
     public function validateJWT(string $jwt): object
     {

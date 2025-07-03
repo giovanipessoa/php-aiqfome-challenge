@@ -1,5 +1,7 @@
 <?php
 
+// AWS RDS (Relational Database Service) configuration
+
 return [
     'driver'   => 'mysql',
     'host'     => 'aiqfome.crueq47447kf.us-east-2.rds.amazonaws.com',

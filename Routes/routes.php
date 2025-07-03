@@ -9,12 +9,14 @@ $method = $_SERVER['REQUEST_METHOD'];
 $uri = str_replace($basePath, '', $_SERVER['REQUEST_URI']);
 $route = "$method $uri";
 
+// get methods
 $methods = [
     'GET',
     'PUT',
     'DELETE'
 ];
 
+// get id from uri
 if (in_array($method, $methods) && preg_match('#^/customer/(\d+)$#', $uri, $matches)) {
     $id = (int) $matches[1];
     $route = $method . ' /customer/{id}';

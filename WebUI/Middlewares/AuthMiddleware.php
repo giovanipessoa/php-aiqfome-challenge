@@ -6,6 +6,11 @@ use Infra\Auth\Service;
 
 class AuthMiddleware
 {
+    /*
+    * handle
+    * @return void
+    */
+
     public function handle(): void
     {
         $headers = getallheaders();

@@ -10,6 +10,12 @@ use Application\Services\AuthService;
 use Application\Interfaces\ICustomerRepository;
 use Infra\Data\Repositories\CustomerRepository;
 
+
+/*
+* dependency injection
+* @return array
+*/
+
 return [
     IDatabase::class => \DI\create(AppDataBaseContext::class),
     Service::class => \DI\create(Service::class),

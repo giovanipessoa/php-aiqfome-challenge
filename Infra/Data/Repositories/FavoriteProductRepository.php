@@ -16,11 +16,24 @@ class FavoriteProductRepository implements IFavoriteProductRepository
         $this->database = $database;
     }
 
+    /*
+    * create favorite product
+    * @param FavoriteProduct $favoriteProduct
+    * @return void
+    */
+
     public function create(FavoriteProduct $favoriteProduct): void
     {
         $stmt = $this->database->getConnection()->prepare("INSERT INTO favorite_products (product_id, customer_id) VALUES (?, ?)");
         $stmt->execute([$favoriteProduct->productId, $favoriteProduct->customerId]);
     }
+
+    /*
+    * check if favorite product exists
+    * @param int $productId
+    * @param int $customerId
+    * @return bool
+    */
 
     public function exists(int $productId, int $customerId): bool
     {
@@ -30,6 +43,12 @@ class FavoriteProductRepository implements IFavoriteProductRepository
         return $stmt->fetchColumn() > 0;
     }
 
+    /*
+    * get favorite products by customer id
+    * @param string $customerId
+    * @return array
+    */
+
     public function getByCustomerId(string $customerId): array
     {
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM favorite_products WHERE customer_id = ?");
@@ -37,6 +56,12 @@ class FavoriteProductRepository implements IFavoriteProductRepository
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    /*
+    * delete favorite product
+    * @param string $id
+    * @return void
+    */
 
     public function delete(string $id): void
     {

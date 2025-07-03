@@ -8,6 +8,13 @@ class AuthService
 {
     public function __construct(private Service $service) {}
 
+    /*
+    * auth
+    * @param string $email
+    * @param string $password
+    * @return string
+    */
+
     public function auth(string $email, string $password): string
     {
         $user = [

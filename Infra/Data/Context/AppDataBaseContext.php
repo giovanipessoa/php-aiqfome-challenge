@@ -24,6 +24,11 @@ class AppDataBaseContext implements IDatabase
         );
     }
 
+    /*
+    * get connection
+    * @return PDO
+    */
+
     public function getConnection(): PDO
     {
         return $this->connection;

@@ -15,6 +15,12 @@ class CustomerUseCase
         $this->interface = $customerRepository;
     }
 
+    /*
+    * create customer
+    * @param Customer $customer
+    * @return Customer
+    */
+
     public function create(Customer $customer): Customer
     {
         if ($this->interface->getByEmail($customer->email)) {
@@ -25,25 +31,54 @@ class CustomerUseCase
         return $customer;
     }
 
+    /*
+    * get customer by id
+    * @param string $id
+    * @return Customer
+    */
+
     public function getById(string $id): Customer
     {
         return $this->interface->getById($id);
     }
+
+    /*
+    * get customer by email
+    * @param string $email
+    * @return Customer
+    */
 
     public function getByEmail(string $email): Customer
     {
         return $this->interface->getByEmail($email);
     }
 
+    /*
+    * get all customers
+    * @return array
+    */
+
     public function getAll(): array
     {
         return $this->interface->getAll();
     }
 
+    /*
+    * update customer
+    * @param Customer $customer
+    * @return void
+    */
+
     public function update(Customer $customer): void
     {
         $this->interface->update($customer);
     }
+
+    /*
+    * delete customer
+    * @param string $id
+    * @return void
+    */
 
     public function delete(string $id): void
     {

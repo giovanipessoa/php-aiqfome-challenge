@@ -20,10 +20,20 @@ class FavoriteProduct
         }
     }
 
+    /*
+    * get product id
+    * @return int
+    */
+
     public function getProductId(): int
     {
         return $this->productId;
     }
+
+    /*
+    * get customer id
+    * @return int
+    */
 
     public function getCustomerId(): int
     {

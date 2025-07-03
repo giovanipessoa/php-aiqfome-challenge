@@ -11,4 +11,5 @@ $containerBuilder = new ContainerBuilder;
 $containerBuilder->addDefinitions(__DIR__ . '/../Infra/IoC/DependencyInjection.php');
 $container = $containerBuilder->build();
 
+// main routes
 require_once __DIR__ . '/../Routes/routes.php';
