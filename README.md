@@ -4,6 +4,12 @@
 
 Este é um projeto PHP desenvolvido como parte do desafio Aiqfome, implementando uma API REST para gerenciamento de clientes e produtos favoritos. A aplicação segue os princípios da Clean Architecture e utiliza padrões modernos de desenvolvimento PHP.
 
+## Documentação da API
+
+Você pode encontrar a documentação completa da API (Swagger UI) neste link:
+
+[Acessar Documentação da API](http://www.aiqfome.kinghost.net/Public/doc.html)
+
 ## Arquitetura
 
 A aplicação está estruturada seguindo os princípios da **Clean Architecture** com as seguintes camadas:
