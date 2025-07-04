@@ -12,11 +12,11 @@ class FavoriteProduct
         public string $customerId,
     ) {
         if (ValidationHelper::validateProductId($this->productId)) {
-            throw new \Exception(implode(', ', array_map(fn($m) => $m->value, ValidationMessages::getFavoriteProductMessages())));
+            throw new \Exception(implode(', ', array_map(fn($m) => $m->value, ValidationMessages::getProductIdRequiredMessages())));
         }
 
         if (ValidationHelper::validateCustomerId($this->customerId)) {
-            throw new \Exception(implode(', ', array_map(fn($m) => $m->value, ValidationMessages::getFavoriteProductMessages())));
+            throw new \Exception(implode(', ', array_map(fn($m) => $m->value, ValidationMessages::getCustomerIdRequiredMessages())));
         }
     }
 
