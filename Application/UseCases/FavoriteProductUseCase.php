@@ -8,15 +8,15 @@ use Domain\Entities\FavoriteProduct;
 
 class FavoriteProductUseCase
 {
-    private IFavoriteProductRepository $interface;
-    private IProductService $productService;
+    private IFavoriteProductRepository $iFavoriteProductRepository;
+    private IProductService $iProductService;
 
     public function __construct(
         IFavoriteProductRepository $favoriteProductRepository,
         IProductService $productService
     ) {
-        $this->interface = $favoriteProductRepository;
-        $this->productService = $productService;
+        $this->iFavoriteProductRepository = $favoriteProductRepository;
+        $this->iProductService = $productService;
     }
 
     /*
@@ -27,15 +27,15 @@ class FavoriteProductUseCase
 
     public function create(FavoriteProduct $favoriteProduct): void
     {
-        if (!$this->productService->exists($favoriteProduct->getProductId())) {
+        if (!$this->iProductService->exists($favoriteProduct->getProductId())) {
             throw new \Exception('Produto não encontrado.');
         }
 
-        if ($this->interface->exists($favoriteProduct->getProductId(), $favoriteProduct->getCustomerId())) {
+        if ($this->iFavoriteProductRepository->exists($favoriteProduct->getProductId(), $favoriteProduct->getCustomerId())) {
             throw new \Exception('Produto já está nos favoritos.');
         }
 
-        $this->interface->create($favoriteProduct);
+        $this->iFavoriteProductRepository->create($favoriteProduct);
     }
 
     /*
@@ -47,7 +47,7 @@ class FavoriteProductUseCase
 
     public function exists(int $productId, int $customerId): bool
     {
-        return $this->interface->exists($productId, $customerId);
+        return $this->iFavoriteProductRepository->exists($productId, $customerId);
     }
 
     /*
@@ -58,7 +58,7 @@ class FavoriteProductUseCase
 
     public function getByCustomerId(string $customerId): array
     {
-        return $this->interface->getByCustomerId($customerId);
+        return $this->iFavoriteProductRepository->getByCustomerId($customerId);
     }
 
     /*
@@ -69,6 +69,6 @@ class FavoriteProductUseCase
 
     public function delete(string $id): void
     {
-        $this->interface->delete($id);
+        $this->iFavoriteProductRepository->delete($id);
     }
 }
