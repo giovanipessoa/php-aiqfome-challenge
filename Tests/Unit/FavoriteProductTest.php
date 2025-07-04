@@ -24,7 +24,7 @@ class FavoriteProductTest extends TestCase
 
     public function testCreateFavoriteProductWithEmptyCustomerId()
     {
-        $customerId = '';
+        $customerId = 0;
         $productId = 1;
 
         $this->expectException(\Exception::class);
@@ -36,7 +36,7 @@ class FavoriteProductTest extends TestCase
     public function testCreateFavoriteProductWithEmptyProductId()
     {
         $customerId = 1;
-        $productId = '';
+        $productId = 0;
 
         $this->expectException(\Exception::class);
         $this->expectExceptionMessage(ValidationMessages::PRODUCT_ID_REQUIRED->value);
