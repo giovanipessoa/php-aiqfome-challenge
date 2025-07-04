@@ -8,8 +8,8 @@ use Domain\Enums\Commons\ValidationMessages;
 class FavoriteProduct
 {
     public function __construct(
-        public string $productId,
-        public string $customerId,
+        public int $productId,
+        public int $customerId,
     ) {
         if (ValidationHelper::validateProductId($this->productId)) {
             throw new \Exception(implode(', ', array_map(fn($m) => $m->value, ValidationMessages::getProductIdRequiredMessages())));
