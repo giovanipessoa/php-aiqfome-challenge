@@ -77,4 +77,38 @@ class ValidationHelper
 
         return $errors;
     }
+
+    /*
+    * validate title using the standard rules
+    * @param string $title
+    * @return array
+    */
+
+    public static function validateTitle(string $title): array
+    {
+        $errors = [];
+
+        if (empty($title)) {
+            $errors[] = ValidationMessages::TITLE_REQUIRED->value;
+        }
+
+        return $errors;
+    }
+
+    /*
+    * validate price using the standard rules
+    * @param float $price
+    * @return array
+    */
+
+    public static function validatePrice(float $price): array
+    {
+        $errors = [];
+
+        if (empty($price)) {
+            $errors[] = ValidationMessages::PRICE_REQUIRED->value;
+        }
+
+        return $errors;
+    }
 }

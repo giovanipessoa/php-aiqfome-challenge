@@ -15,6 +15,9 @@ enum ValidationMessages: string
     case CUSTOMER_ID_REQUIRED = 'O cliente é obrigatório';
     case PRODUCT_NOT_FOUND = 'Produto não encontrado';
     case PRODUCT_ALREADY_IN_FAVORITES = 'Produto já está nos favoritos';
+    case TITLE_REQUIRED = 'O título é obrigatório';
+    case PRICE_REQUIRED = 'O preço é obrigatório';
+    case PRODUCT_ALREADY_EXISTS = 'Este produto já existe';
 
     public static function getNameMessages(): array
     {
@@ -63,6 +66,20 @@ enum ValidationMessages: string
     {
         return [
             self::PRODUCT_ALREADY_IN_FAVORITES
+        ];
+    }
+
+    public static function getTitleRequiredMessages(): array
+    {
+        return [
+            self::TITLE_REQUIRED
+        ];
+    }
+
+    public static function getPriceRequiredMessages(): array
+    {
+        return [
+            self::PRICE_REQUIRED
         ];
     }
 }
