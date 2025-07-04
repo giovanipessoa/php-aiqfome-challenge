@@ -1,306 +1,415 @@
 openapi: 3.0.0
 info:
-  title: 'API Aiqfome Challenge'
-  version: 1.0.0
+    title: "API Aiqfome Challenge"
+    version: 1.0.0
+servers:
+    - url: http://www.aiqfome.kinghost.net/Public
+      description: Servidor de Produção Aiqfome
 paths:
-  /v1/auth/login:
-    post:
-      tags:
-        - Auth
-      summary: Login
-      operationId: 8d116d2692af90eb5287d81a90cc37ec
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              required:
-                - email
-                - password
-              properties:
-                email:
-                  type: string
-                  format: email
-                  example: admin@aiqfome.com
-                password:
-                  type: string
-                  format: password
-                  example: aiqfome
-              type: object
-      responses:
-        '200':
-          description: 'Login realizado com sucesso'
-          content:
-            application/json:
-              schema:
-                properties:
-                  token: { type: string, example: eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9... }
-                type: object
-        '401':
-          description: 'Credenciais inválidas'
-          content:
-            application/json:
-              schema:
-                properties:
-                  error: { type: string, example: 'E-mail ou senha inválidos' }
-                type: object
-  /v1/customer:
-    post:
-      tags:
-        - Customers
-      summary: 'Add a new customer'
-      operationId: b9ef92804b97f31cefd03390e8b3b87b
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              required:
-                - name
-                - email
-              properties:
-                name:
-                  type: string
-                  example: 'Giovani Pessoa'
-                email:
-                  type: string
-                  format: email
-                  example: giovanipessoa@live.com
-              type: object
-      responses:
-        '201':
-          description: 'Cliente criado com sucesso'
-          content:
-            application/json:
-              schema:
-                properties:
-                  id: { type: integer, example: 1 }
-                  name: { type: string, example: 'Giovani Pessoa' }
-                  email: { type: string, format: email, example: giovanipessoa@live.com }
-                type: object
-        '400':
-          description: 'Erro ao criar cliente'
-          content:
-            application/json:
-              schema:
-                properties:
-                  error: { type: string, example: 'Este e-mail já está cadastrado' }
-                type: object
-  '/v1/customer/{id}':
-    get:
-      tags:
-        - Customers
-      summary: 'Get a single customer'
-      operationId: 3b0a9c2b844e6978b0f0c2ed3e068e67
-      parameters:
-        -
-          name: id
-          in: path
-          description: 'Customer ID'
-          required: true
-          schema:
-            type: string
-            example: '1'
-      responses:
-        '200':
-          description: 'Cliente encontrado'
-          content:
-            application/json:
-              schema:
-                properties:
-                  id: { type: integer, example: 1 }
-                  name: { type: string, example: 'Giovani Pessoa' }
-                  email: { type: string, format: email, example: giovanipessoa@live.com }
-                type: object
-        '404':
-          description: 'Cliente não encontrado'
-          content:
-            application/json:
-              schema:
-                properties:
-                  error: { type: string, example: 'Cliente não encontrado' }
-                type: object
-    put:
-      tags:
-        - Customers
-      summary: 'Update a customer'
-      operationId: d94760d6c2fee251f59b49dc7b15d73a
-      parameters:
-        -
-          name: id
-          in: path
-          description: 'Customer ID'
-          required: true
-          schema:
-            type: integer
-            example: 1
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              properties:
-                name:
-                  type: string
-                  example: 'Giovani Pessoa'
-                email:
-                  type: string
-                  format: email
-                  example: giovanipessoa@live.com
-              type: object
-      responses:
-        '200':
-          description: 'Cliente atualizado com sucesso'
-          content:
-            application/json:
-              schema:
-                properties:
-                  id: { type: integer, example: 1 }
-                  name: { type: string, example: 'Giovani Pessoa' }
-                  email: { type: string, format: email, example: giovanipessoa@live.com }
-                type: object
-        '404':
-          description: 'Cliente não encontrado'
-          content:
-            application/json:
-              schema:
-                properties:
-                  error: { type: string, example: 'Cliente não encontrado' }
-                type: object
-    delete:
-      tags:
-        - Customers
-      summary: 'Delete a customer'
-      operationId: 370d47d82c140ab83601b0e244638b19
-      parameters:
-        -
-          name: id
-          in: path
-          description: 'Customer ID'
-          required: true
-          schema:
-            type: integer
-            example: 1
-      responses:
-        '200':
-          description: 'Cliente deletado com sucesso'
-          content:
-            application/json:
-              schema:
-                properties:
-                  message: { type: string, example: 'Cliente deletado com sucesso' }
-                type: object
-        '404':
-          description: 'Cliente não encontrado'
-          content:
-            application/json:
-              schema:
-                properties:
-                  error: { type: string, example: 'Cliente não encontrado' }
-                type: object
-  /v1/customers:
-    get:
-      tags:
-        - Customers
-      summary: 'Get all customers'
-      operationId: ad5c4bfa2fad1ed340300db7f061257d
-      responses:
-        '200':
-          description: 'Clientes encontrados'
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  properties: { id: { type: integer, example: 1 }, name: { type: string, example: 'Giovani Pessoa' }, email: { type: string, format: email, example: giovanipessoa@live.com } }
-                  type: object
-        '400':
-          description: 'Erro ao buscar clientes'
-          content:
-            application/json:
-              schema:
-                properties:
-                  error: { type: string, example: 'Clientes não encontrados' }
-                type: object
-  /v1/favorite-product:
-    post:
-      tags:
-        - Favorites
-      summary: 'Add a new favorite product'
-      operationId: a379fc8ac56c2e44c00b8a310a483b2b
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              required:
-                - product_id
-                - customer_id
-              properties:
-                product_id:
-                  type: integer
-                  example: 1
-                customer_id:
-                  type: integer
-                  example: 1
-              type: object
-      responses:
-        '201':
-          description: 'Produto favoritado com sucesso'
-          content:
-            application/json:
-              schema:
-                properties:
-                  message: { type: string, example: 'Produto favoritado com sucesso' }
-                type: object
-        '400':
-          description: 'Produto já está nos favoritos'
-          content:
-            application/json:
-              schema:
-                properties:
-                  error: { type: string, example: 'Produto já está nos favoritos.' }
-                type: object
-  '/v1/favorite-product/{id}':
-    get:
-      tags:
-        - Favorites
-      summary: 'Get a single favorite product'
-      operationId: eef7d2f36cd2bc5705533653e0e9dd74
-      parameters:
-        -
-          name: id
-          in: path
-          description: 'Customer ID'
-          required: true
-          schema:
-            type: integer
-            example: 1
-      responses:
-        '200':
-          description: 'Produto favoritado encontrado'
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  properties: { id: { type: integer, example: 1 }, title: { type: string, example: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops' }, image: { type: string, example: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg' }, price: { type: number, format: float, example: 109.95 }, review: { type: boolean, example: false }, product_id: { type: integer, example: 1 }, customer_id: { type: integer, example: 1 } }
-                  type: object
-        '400':
-          description: 'Produto não encontrado'
-          content:
-            application/json:
-              schema:
-                properties:
-                  error: { type: string, example: 'Produto não encontrado' }
-                type: object
+    /v1/auth/login:
+        post:
+            tags:
+                - Auth
+            summary: Login
+            operationId: 8d116d2692af90eb5287d81a90cc37ec
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            required:
+                                - email
+                                - password
+                            properties:
+                                email:
+                                    type: string
+                                    format: email
+                                    example: admin@aiqfome.com
+                                password:
+                                    type: string
+                                    format: password
+                                    example: aiqfome
+                            type: object
+            responses:
+                "200":
+                    description: "Login realizado com sucesso"
+                    content:
+                        application/json:
+                            schema:
+                                properties:
+                                    token:
+                                        {
+                                            type: string,
+                                            example: eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiJ9...,
+                                        }
+                                type: object
+                "401":
+                    description: "Credenciais inválidas"
+                    content:
+                        application/json:
+                            schema:
+                                properties:
+                                    error:
+                                        {
+                                            type: string,
+                                            example: "E-mail ou senha inválidos",
+                                        }
+                                type: object
+    /v1/customer:
+        post:
+            tags:
+                - Customers
+            summary: "Add a new customer"
+            operationId: b9ef92804b97f31cefd03390e8b3b87b
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            required:
+                                - name
+                                - email
+                            properties:
+                                name:
+                                    type: string
+                                    example: "Giovani Pessoa"
+                                email:
+                                    type: string
+                                    format: email
+                                    example: giovanipessoa@live.com
+                            type: object
+            responses:
+                "201":
+                    description: "Cliente criado com sucesso"
+                    content:
+                        application/json:
+                            schema:
+                                properties:
+                                    id: { type: integer, example: 1 }
+                                    name:
+                                        {
+                                            type: string,
+                                            example: "Giovani Pessoa",
+                                        }
+                                    email:
+                                        {
+                                            type: string,
+                                            format: email,
+                                            example: giovanipessoa@live.com,
+                                        }
+                                type: object
+                "400":
+                    description: "Erro ao criar cliente"
+                    content:
+                        application/json:
+                            schema:
+                                properties:
+                                    error:
+                                        {
+                                            type: string,
+                                            example: "Este e-mail já está cadastrado",
+                                        }
+                                type: object
+    "/v1/customer/{id}":
+        get:
+            tags:
+                - Customers
+            summary: "Get a single customer"
+            operationId: 3b0a9c2b844e6978b0f0c2ed3e068e67
+            parameters:
+                - name: id
+                  in: path
+                  description: "Customer ID"
+                  required: true
+                  schema:
+                      type: string
+                      example: "1"
+            responses:
+                "200":
+                    description: "Cliente encontrado"
+                    content:
+                        application/json:
+                            schema:
+                                properties:
+                                    id: { type: integer, example: 1 }
+                                    name:
+                                        {
+                                            type: string,
+                                            example: "Giovani Pessoa",
+                                        }
+                                    email:
+                                        {
+                                            type: string,
+                                            format: email,
+                                            example: giovanipessoa@live.com,
+                                        }
+                                type: object
+                "404":
+                    description: "Cliente não encontrado"
+                    content:
+                        application/json:
+                            schema:
+                                properties:
+                                    error:
+                                        {
+                                            type: string,
+                                            example: "Cliente não encontrado",
+                                        }
+                                type: object
+        put:
+            tags:
+                - Customers
+            summary: "Update a customer"
+            operationId: d94760d6c2fee251f59b49dc7b15d73a
+            parameters:
+                - name: id
+                  in: path
+                  description: "Customer ID"
+                  required: true
+                  schema:
+                      type: integer
+                      example: 1
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            properties:
+                                name:
+                                    type: string
+                                    example: "Giovani Pessoa"
+                                email:
+                                    type: string
+                                    format: email
+                                    example: giovanipessoa@live.com
+                            type: object
+            responses:
+                "200":
+                    description: "Cliente atualizado com sucesso"
+                    content:
+                        application/json:
+                            schema:
+                                properties:
+                                    id: { type: integer, example: 1 }
+                                    name:
+                                        {
+                                            type: string,
+                                            example: "Giovani Pessoa",
+                                        }
+                                    email:
+                                        {
+                                            type: string,
+                                            format: email,
+                                            example: giovanipessoa@live.com,
+                                        }
+                                type: object
+                "404":
+                    description: "Cliente não encontrado"
+                    content:
+                        application/json:
+                            schema:
+                                properties:
+                                    error:
+                                        {
+                                            type: string,
+                                            example: "Cliente não encontrado",
+                                        }
+                                type: object
+        delete:
+            tags:
+                - Customers
+            summary: "Delete a customer"
+            operationId: 370d47d82c140ab83601b0e244638b19
+            parameters:
+                - name: id
+                  in: path
+                  description: "Customer ID"
+                  required: true
+                  schema:
+                      type: integer
+                      example: 1
+            responses:
+                "200":
+                    description: "Cliente deletado com sucesso"
+                    content:
+                        application/json:
+                            schema:
+                                properties:
+                                    message:
+                                        {
+                                            type: string,
+                                            example: "Cliente deletado com sucesso",
+                                        }
+                                type: object
+                "404":
+                    description: "Cliente não encontrado"
+                    content:
+                        application/json:
+                            schema:
+                                properties:
+                                    error:
+                                        {
+                                            type: string,
+                                            example: "Cliente não encontrado",
+                                        }
+                                type: object
+    /v1/customers:
+        get:
+            tags:
+                - Customers
+            summary: "Get all customers"
+            operationId: ad5c4bfa2fad1ed340300db7f061257d
+            responses:
+                "200":
+                    description: "Clientes encontrados"
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    properties:
+                                        {
+                                            id: { type: integer, example: 1 },
+                                            name:
+                                                {
+                                                    type: string,
+                                                    example: "Giovani Pessoa",
+                                                },
+                                            email:
+                                                {
+                                                    type: string,
+                                                    format: email,
+                                                    example: giovanipessoa@live.com,
+                                                },
+                                        }
+                                    type: object
+                "400":
+                    description: "Erro ao buscar clientes"
+                    content:
+                        application/json:
+                            schema:
+                                properties:
+                                    error:
+                                        {
+                                            type: string,
+                                            example: "Clientes não encontrados",
+                                        }
+                                type: object
+    /v1/favorite-product:
+        post:
+            tags:
+                - Favorites
+            summary: "Add a new favorite product"
+            operationId: a379fc8ac56c2e44c00b8a310a483b2b
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            required:
+                                - product_id
+                                - customer_id
+                            properties:
+                                product_id:
+                                    type: integer
+                                    example: 1
+                                customer_id:
+                                    type: integer
+                                    example: 1
+                            type: object
+            responses:
+                "201":
+                    description: "Produto favoritado com sucesso"
+                    content:
+                        application/json:
+                            schema:
+                                properties:
+                                    message:
+                                        {
+                                            type: string,
+                                            example: "Produto favoritado com sucesso",
+                                        }
+                                type: object
+                "400":
+                    description: "Produto já está nos favoritos"
+                    content:
+                        application/json:
+                            schema:
+                                properties:
+                                    error:
+                                        {
+                                            type: string,
+                                            example: "Produto já está nos favoritos.",
+                                        }
+                                type: object
+    "/v1/favorite-product/{id}":
+        get:
+            tags:
+                - Favorites
+            summary: "Get a single favorite product"
+            operationId: eef7d2f36cd2bc5705533653e0e9dd74
+            parameters:
+                - name: id
+                  in: path
+                  description: "Customer ID"
+                  required: true
+                  schema:
+                      type: integer
+                      example: 1
+            responses:
+                "200":
+                    description: "Produto favoritado encontrado"
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    properties:
+                                        {
+                                            id: { type: integer, example: 1 },
+                                            title:
+                                                {
+                                                    type: string,
+                                                    example: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+                                                },
+                                            image:
+                                                {
+                                                    type: string,
+                                                    example: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
+                                                },
+                                            price:
+                                                {
+                                                    type: number,
+                                                    format: float,
+                                                    example: 109.95,
+                                                },
+                                            review:
+                                                {
+                                                    type: boolean,
+                                                    example: false,
+                                                },
+                                            product_id:
+                                                { type: integer, example: 1 },
+                                            customer_id:
+                                                { type: integer, example: 1 },
+                                        }
+                                    type: object
+                "400":
+                    description: "Produto não encontrado"
+                    content:
+                        application/json:
+                            schema:
+                                properties:
+                                    error:
+                                        {
+                                            type: string,
+                                            example: "Produto não encontrado",
+                                        }
+                                type: object
 tags:
-  -
-    name: Auth
-    description: Auth
-  -
-    name: Customers
-    description: Customers
-  -
-    name: Favorites
-    description: Favorites
+    - name: Auth
+      description: Auth
+    - name: Customers
+      description: Customers
+    - name: Favorites
+      description: Favorites
