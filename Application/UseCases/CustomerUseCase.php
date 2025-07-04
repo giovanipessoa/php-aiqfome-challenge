@@ -8,11 +8,11 @@ use Domain\Enums\Commons\ValidationMessages;
 
 class CustomerUseCase
 {
-    private ICustomerRepository $interface;
+    private ICustomerRepository $iCustomerRepository;
 
     public function __construct(ICustomerRepository $customerRepository)
     {
-        $this->interface = $customerRepository;
+        $this->iCustomerRepository = $customerRepository;
     }
 
     /*
@@ -23,11 +23,11 @@ class CustomerUseCase
 
     public function create(Customer $customer): Customer
     {
-        if ($this->interface->getByEmail($customer->email)) {
+        if ($this->iCustomerRepository->getByEmail($customer->email)) {
             throw new \Exception(ValidationMessages::EMAIL_ALREADY_EXISTS->value);
         }
 
-        $this->interface->create($customer);
+        $this->iCustomerRepository->create($customer);
         return $customer;
     }
 
@@ -39,7 +39,7 @@ class CustomerUseCase
 
     public function getById(string $id): Customer
     {
-        return $this->interface->getById($id);
+        return $this->iCustomerRepository->getById($id);
     }
 
     /*
@@ -50,7 +50,7 @@ class CustomerUseCase
 
     public function getByEmail(string $email): Customer
     {
-        return $this->interface->getByEmail($email);
+        return $this->iCustomerRepository->getByEmail($email);
     }
 
     /*
@@ -60,7 +60,7 @@ class CustomerUseCase
 
     public function getAll(): array
     {
-        return $this->interface->getAll();
+        return $this->iCustomerRepository->getAll();
     }
 
     /*
@@ -71,7 +71,7 @@ class CustomerUseCase
 
     public function update(Customer $customer): void
     {
-        $this->interface->update($customer);
+        $this->iCustomerRepository->update($customer);
     }
 
     /*
@@ -82,6 +82,6 @@ class CustomerUseCase
 
     public function delete(string $id): void
     {
-        $this->interface->delete($id);
+        $this->iCustomerRepository->delete($id);
     }
 }
