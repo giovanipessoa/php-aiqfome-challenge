@@ -3,6 +3,7 @@
 use WebUI\Controllers\AuthController;
 use WebUI\Controllers\CustomerController;
 use WebUI\Controllers\FavoriteProductController;
+use WebUI\Controllers\ProductController;
 use WebUI\Middlewares\AuthMiddleware;
 
 $basePath = '/learning/php-aiqfome-challenge/Public';
@@ -17,10 +18,16 @@ $methods = [
     'DELETE'
 ];
 
-// get id from uri
+// get customer from uri
 if (in_array($method, $methods) && preg_match('#^/customer/(\d+)$#', $uri, $matches)) {
     $id = (int) $matches[1];
     $route = $method . ' /customer/{id}';
+}
+
+// get favorite-product from uri
+if (in_array($method, $methods) && preg_match('#^/favorite-product/(\d+)$#', $uri, $matches)) {
+    $id = (int) $matches[1];
+    $route = $method . ' /favorite-product/{id}';
 }
 
 $middleware = new AuthMiddleware();
@@ -71,6 +78,14 @@ switch ($route) {
 
         $controller = $container->get(FavoriteProductController::class);
         $controller->create();
+        break;
+
+    case 'GET /favorite-product/{id}':
+        // require auth
+        $middleware->handle();
+
+        $controller = $container->get(ProductController::class);
+        $controller->getByCustomerId($id);
         break;
     default:
         http_response_code(404);
