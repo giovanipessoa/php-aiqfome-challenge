@@ -27,12 +27,6 @@ class CustomerController
             $name = $data['name'] ?? null;
             $email = $data['email'] ?? null;
 
-            if (empty($name) || empty($email)) {
-                http_response_code(422);
-                echo json_encode(['error' => 'Nome e e-mail são obrigatórios']);
-                return;
-            }
-
             $customer = $this->customerUseCase->create(new Customer(1, $name, $email));
 
             http_response_code(201);
