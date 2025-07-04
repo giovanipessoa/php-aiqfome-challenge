@@ -2,6 +2,7 @@
 
 use WebUI\Controllers\AuthController;
 use WebUI\Controllers\CustomerController;
+use WebUI\Controllers\FavoriteProductController;
 use WebUI\Middlewares\AuthMiddleware;
 
 $basePath = '/learning/php-aiqfome-challenge/Public';
@@ -63,6 +64,13 @@ switch ($route) {
 
         $controller = $container->get(CustomerController::class);
         $controller->delete($id);
+        break;
+    case 'POST /favorite-product':
+        // require auth
+        $middleware->handle();
+
+        $controller = $container->get(FavoriteProductController::class);
+        $controller->create();
         break;
     default:
         http_response_code(404);
