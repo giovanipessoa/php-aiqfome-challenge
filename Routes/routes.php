@@ -2,9 +2,10 @@
 
 use WebUI\Middlewares\AuthMiddleware;
 
-$basePath = '/learning/php-aiqfome-challenge/Public';
+$requestUri = $_SERVER['REQUEST_URI'];
+$pathUntilPublic = substr($requestUri, 0, strpos($requestUri, '/Public') + strlen('/Public'));
+$uri = str_replace($pathUntilPublic, '', $requestUri);
 $method = $_SERVER['REQUEST_METHOD'];
-$uri = str_replace($basePath, '', $_SERVER['REQUEST_URI']);
 $route = "$method $uri";
 
 // get methods
