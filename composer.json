@@ -10,6 +10,7 @@
     ],
     "require": {
         "php": "^8.1",
+        "doctrine/annotations": "^2.0",
         "firebase/php-jwt": "^6.11",
         "php-di/php-di": "^7.0",
         "slim/psr7": "^1.6",
@@ -39,7 +40,8 @@
         "test:unit": "phpunit Tests/Unit/",
         "test:integration": "phpunit Tests/Integration/",
         "test:application": "phpunit Tests/Application/",
-        "test:webui": "phpunit Tests/WebUI/"
+        "test:webui": "phpunit Tests/WebUI/",
+        "swagger": "openapi --output Public/swagger.json ./WebUI/Controllers"
     },
     "config": {
         "optimize-autoloader": true,
