@@ -6,10 +6,18 @@ use Infra\Auth\Service;
 use WebUI\Controllers\AuthController;
 use Application\Services\AuthService;
 
-// customers
+// customer
 use Application\Interfaces\ICustomerRepository;
 use Infra\Data\Repositories\CustomerRepository;
+use Application\UseCases\CustomerUseCase;
 
+// favorite product
+use Application\Interfaces\IFavoriteProductRepository;
+use Infra\Data\Repositories\FavoriteProductRepository;
+use Application\Interfaces\IProductService;
+use Infra\Data\Services\External\Api\ProductService;
+use Application\UseCases\FavoriteProductUseCase;
+use WebUI\Controllers\FavoriteProductController;
 
 /*
 * dependency injection
@@ -24,4 +32,18 @@ return [
 
     ICustomerRepository::class => \DI\create(CustomerRepository::class)
         ->constructor(\DI\get(IDatabase::class)),
+
+    CustomerUseCase::class => \DI\create(CustomerUseCase::class)
+        ->constructor(\DI\get(ICustomerRepository::class)),
+
+    IFavoriteProductRepository::class => \DI\create(FavoriteProductRepository::class)
+        ->constructor(\DI\get(IDatabase::class)),
+
+    IProductService::class => \DI\create(ProductService::class),
+
+    FavoriteProductUseCase::class => \DI\create(FavoriteProductUseCase::class)
+        ->constructor(\DI\get(IFavoriteProductRepository::class), \DI\get(IProductService::class)),
+
+    FavoriteProductController::class => \DI\create(FavoriteProductController::class)
+        ->constructor(\DI\get(FavoriteProductUseCase::class)),
 ];
