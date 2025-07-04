@@ -4,6 +4,7 @@ namespace WebUI\Controllers;
 
 use Application\UseCases\FavoriteProductUseCase;
 use Domain\Entities\FavoriteProduct;
+use OpenApi\Annotations as OA;
 
 class FavoriteProductController
 {
@@ -13,6 +14,36 @@ class FavoriteProductController
     {
         $this->favoriteProductUseCase = $favoriteProductUseCase;
     }
+
+    /**
+     * @OA\Post(
+     *     path="/v1/favorite-product",
+     *     summary="Add a new favorite product",
+     *     tags={"Favorites"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"product_id", "customer_id"},
+     *             @OA\Property(property="product_id", type="integer", example=1),
+     *             @OA\Property(property="customer_id", type="integer", example=1)
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Produto favoritado com sucesso",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="Produto favoritado com sucesso")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Produto já está nos favoritos",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="error", type="string", example="Produto já está nos favoritos.")
+     *         )
+     *     )
+     * )
+     */
 
     public function create()
     {
