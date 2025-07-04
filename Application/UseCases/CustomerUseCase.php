@@ -37,7 +37,7 @@ class CustomerUseCase
     * @return Customer
     */
 
-    public function getById(string $id): Customer
+    public function getById(string $id): ?Customer
     {
         return $this->iCustomerRepository->getById($id);
     }
@@ -48,7 +48,7 @@ class CustomerUseCase
     * @return Customer
     */
 
-    public function getByEmail(string $email): Customer
+    public function getByEmail(string $email): ?Customer
     {
         return $this->iCustomerRepository->getByEmail($email);
     }

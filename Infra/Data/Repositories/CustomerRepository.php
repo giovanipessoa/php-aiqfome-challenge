@@ -38,7 +38,7 @@ class CustomerRepository implements ICustomerRepository
     * @return Customer
     */
 
-    public function getById(string $id): Customer
+    public function getById(string $id): ?Customer
     {
         $stmt = $this->database->getConnection()->prepare("SELECT * FROM customers WHERE id = ?");
         $stmt->execute([$id]);
