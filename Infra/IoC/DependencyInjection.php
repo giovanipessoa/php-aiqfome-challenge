@@ -19,6 +19,11 @@ use Infra\Data\Services\External\Api\ProductService;
 use Application\UseCases\FavoriteProductUseCase;
 use WebUI\Controllers\FavoriteProductController;
 
+// product
+use Application\Interfaces\IProductRepository;
+use Infra\Data\Repositories\ProductRepository;
+use Application\UseCases\ProductUseCase;
+
 /*
 * dependency injection
 * @return array
@@ -42,8 +47,14 @@ return [
     IProductService::class => \DI\create(ProductService::class),
 
     FavoriteProductUseCase::class => \DI\create(FavoriteProductUseCase::class)
-        ->constructor(\DI\get(IFavoriteProductRepository::class), \DI\get(IProductService::class)),
+        ->constructor(\DI\get(IFavoriteProductRepository::class), \DI\get(IProductService::class), \DI\get(IProductRepository::class)),
 
     FavoriteProductController::class => \DI\create(FavoriteProductController::class)
         ->constructor(\DI\get(FavoriteProductUseCase::class)),
+
+    IProductRepository::class => \DI\create(ProductRepository::class)
+        ->constructor(\DI\get(IDatabase::class)),
+
+    ProductUseCase::class => \DI\create(ProductUseCase::class)
+        ->constructor(\DI\get(IProductRepository::class)),
 ];
