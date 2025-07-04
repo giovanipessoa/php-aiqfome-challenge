@@ -4,5 +4,5 @@ namespace Application\Interfaces;
 
 interface IProductService
 {
-    public function exists(int $productId): bool;
+    public function exists(int $productId): array;
 }
