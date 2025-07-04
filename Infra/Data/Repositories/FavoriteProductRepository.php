@@ -1,4 +1,4 @@
-<?
+<?php
 
 namespace Infra\Data\Repositories;
 
