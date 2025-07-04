@@ -38,11 +38,17 @@ enum ValidationMessages: string
         ];
     }
 
-    public static function getFavoriteProductMessages(): array
+    public static function getCustomerIdRequiredMessages(): array
     {
         return [
-            self::PRODUCT_ID_REQUIRED,
             self::CUSTOMER_ID_REQUIRED
+        ];
+    }
+
+    public static function getProductIdRequiredMessages(): array
+    {
+        return [
+            self::PRODUCT_ID_REQUIRED
         ];
     }
 
