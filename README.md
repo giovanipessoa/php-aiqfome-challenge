@@ -108,7 +108,7 @@ Authorization: Bearer <seu-token-jwt>
 
 #### Autenticação
 
-**POST /auth/login**
+**POST /v1/auth/login**
 
 -   **Descrição**: Autentica um usuário e retorna um token JWT
 -   **Body**:
@@ -127,7 +127,7 @@ Authorization: Bearer <seu-token-jwt>
 
 #### Clientes
 
-**POST /customer**
+**POST /v1/customer**
 
 -   **Descrição**: Cria um novo cliente
 -   **Autenticação**: Obrigatória
@@ -139,18 +139,18 @@ Authorization: Bearer <seu-token-jwt>
     }
     ```
 
-**GET /customer/{id}**
+**GET /v1/customer/{id}**
 
 -   **Descrição**: Busca um cliente por ID
 -   **Autenticação**: Obrigatória
 -   **Parâmetros**: `id` (int) - ID do cliente
 
-**GET /customers**
+**GET /v1/customers**
 
 -   **Descrição**: Lista todos os clientes
 -   **Autenticação**: Obrigatória
 
-**PUT /customer/{id}**
+**PUT /v1/customer/{id}**
 
 -   **Descrição**: Atualiza um cliente existente
 -   **Autenticação**: Obrigatória
@@ -163,7 +163,7 @@ Authorization: Bearer <seu-token-jwt>
     }
     ```
 
-**DELETE /customer/{id}**
+**DELETE /v1/customer/{id}**
 
 -   **Descrição**: Remove um cliente
 -   **Autenticação**: Obrigatória
@@ -171,7 +171,7 @@ Authorization: Bearer <seu-token-jwt>
 
 #### Produtos favoritos
 
-**POST /favorite-product**
+**POST /v1/favorite-product**
 
 -   **Descrição**: Adiciona um produto aos favoritos de um cliente
 -   **Autenticação**: Obrigatória
@@ -183,7 +183,7 @@ Authorization: Bearer <seu-token-jwt>
     }
     ```
 
-**GET /favorite-product/{id}**
+**GET /v1/favorite-product/{id}**
 
 -   **Descrição**: Busca produtos favoritos de um cliente
 -   **Autenticação**: Obrigatória
